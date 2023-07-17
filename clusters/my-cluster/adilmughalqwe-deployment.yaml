@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: podinfo
+  name: flux-image-updates
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: podinfo
+      app: flux-image-updates
   template:
     metadata:
       labels:
-        app: podinfo
+        app: flux-image-updates
     spec:
       containers:
-        - name: podinfod
+        - name: flux-image-updates
           image: ghcr.io/adilmughalqwe/flux-image-updates:5.0.0 # {"$imagepolicy": "flux-system:flux-image-updates"}
           imagePullPolicy: IfNotPresent
           ports:
