@@ -6,6 +6,6 @@ metadata:
   namespace: flux-system
 spec:
   image: ghcr.io/adilmughalqwe/flux-image-updates
-  interval: 5m0s
+  interval: 5sec
   secretRef:
     name: my-secret-for-flux
