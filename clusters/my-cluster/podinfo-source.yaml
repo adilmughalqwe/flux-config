@@ -7,5 +7,5 @@ metadata:
 spec:
   interval: 30s
   ref:
-    branch: new
+    branch: master1
   url: https://github.com/adilmughalqwe/pod-info-mine.git
