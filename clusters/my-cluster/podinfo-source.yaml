@@ -1,11 +1,24 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: GitRepository
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: podinfo
-  namespace: flux-system
+  name: intel-cim-content
+  annotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+  labels:
+    app: intel-cim-content
 spec:
-  interval: 2s
-  ref:
-    branch: new1
-  url: https://github.com/adilmughalqwe/pod-info-mine.git
+  ttlSecondsAfterFinished: 30
+  template:
+    metadata:
+      name: intel-cim-content
+      labels:
+        app: intel-cim-content
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: intel-cim-content
+        name: intel-cim-content
+        image: gcr.io/us-staging-237601/intel-cim-content:staging.23
+        imagePullPolicy: Always
+      restartPolicy: Never
